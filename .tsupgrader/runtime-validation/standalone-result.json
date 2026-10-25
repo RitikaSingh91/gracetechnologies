@@ -1,0 +1,97 @@
+{
+  "planHash": "765dad11c75d70f651a74f1bb4723e936eefcb8484cc8fc8346b23e2b2582f6e",
+  "phase": "standalone",
+  "recordedAtUtc": "2026-10-23T20:09:02.9743077Z",
+  "retryCount": 2,
+  "resetBaseline": false,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 0,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "production-build",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E grace-technologies-site@0.1.0 build\r\n\u003E next build\r\n\r\n\u25B2 Next.js 16.4.2 (Turbopack)\r\n\u2713 Running next.config.ts took 35ms\r\n- Cache Components enabled\r\n- Partial Prefetching enabled\r\n\r\n  Creating an optimized production build ...\r\n\u2713 Compiled successfully in 311ms\r\n  Running TypeScript ...\r\n  Finished TypeScript in 2.5s ...\r\n  Collecting page data using 9 workers ...\r\n  Generating static pages using 9 workers (0/8) ...\r\n  Generating static pages using 9 workers (2/8) \r\n  Generating static pages using 9 workers (4/8) \r\n  Generating static pages using 9 workers (6/8) \r\n\u2713 Generating static pages using 9 workers (8/8) in 1305ms\r\n  Finalizing page optimization ...\r\n\r\nRoute (app)\r\n\u250C \u25CB /\r\n\u251C \u25CB /_not-found\r\n\u251C \u25CB /admin\r\n\u251C \u0192 /api/contact\r\n\u251C \u25CB /privacy-policy\r\n\u2514 \u25CB /terms-and-conditions\r\n\r\n\r\n\u25CB  (Static)   prerendered as static content\r\n\u0192  (Dynamic)  server-rendered on demand\r\n\r\n",
+        "durationMs": 8341
+      },
+      {
+        "name": "lint",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E grace-technologies-site@0.1.0 lint\r\n\u003E eslint\r\n\r\n",
+        "durationMs": 6976
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E grace-technologies-site@0.1.0 test\r\n\u003E vitest run\r\n\r\n\r\n RUN  v4.1.12 C:/Users/MY PC/OneDrive/Desktop/Grace Technologies Ltd\r\n\r\n\r\n Test Files  3 passed (3)\r\n      Tests  12 passed (12)\r\n   Start at  01:39:02\r\n   Duration  848ms (transform 235ms, setup 0ms, import 620ms, tests 42ms, environment 0ms)\r\n\r\n",
+        "durationMs": 3054,
+        "testResults": {
+          "testFramework": "vitest",
+          "runnerDetectedFrom": "package_json",
+          "testsTotal": 12,
+          "testsPassed": 12,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": false
+        }
+      }
+    ],
+    "executions": [
+      {
+        "source": "production-build",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "build"
+        ],
+        "cwd": "C:\\Users\\MY PC\\OneDrive\\Desktop\\Grace Technologies Ltd",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "lint",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "lint"
+        ],
+        "cwd": "C:\\Users\\MY PC\\OneDrive\\Desktop\\Grace Technologies Ltd",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "test"
+        ],
+        "cwd": "C:\\Users\\MY PC\\OneDrive\\Desktop\\Grace Technologies Ltd",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      }
+    ]
+  }
+}
