@@ -16,7 +16,7 @@ describe("Contact section", () => {
     expect(markup).toContain("Message");
     expect(markup).toContain("Send Message");
     expect(markup).toContain(
-      'href="mailto:gracetechnologiesofficial@gmail.com"',
+      'href="mailto:contact@gracetechnologies.uk"',
     );
     expect(markup).toContain("Grace Technologies Ltd.");
     expect(markup).toContain("Romford, Greater London, United Kingdom");

@@ -158,6 +158,7 @@ export function SiteFooter() {
           className="footer-partner"
         >
           <div className="footer-partner-introduction">
+            <h2 className="footer-partner-heading">Working in partnership</h2>
             <a
               aria-label="Ank Square website"
               className="footer-partner-logo-link"
@@ -175,8 +176,9 @@ export function SiteFooter() {
               />
             </a>
             <p>
-              Empowering businesses with innovative digital solutions.
-              Transform your vision into reality with our expertise.
+              Grace Technologies Ltd. and ANK Square Pvt. Ltd. work together,
+              combining our teams&apos; expertise to deliver thoughtful
+              technology and business solutions across the UK, USA, and India.
             </p>
           </div>
           <ul className="footer-partner-details">

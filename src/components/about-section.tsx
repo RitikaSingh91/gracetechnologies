@@ -8,18 +8,19 @@ export function AboutSection() {
       id="partnership"
     >
       <div className="about-copy">
-        <p className="eyebrow">About Grace Technologies</p>
+        <p className="eyebrow">Our Partnership</p>
         <h2 id="about-title">
           Technology built around people and possibilities.
         </h2>
         <p>
-          Grace Technologies Ltd. works with ANK Square Pvt. Ltd. to provide
-          technology and business services for organizations across the USA and
-          India.
+          Grace Technologies Ltd. and ANK Square Pvt. Ltd. work in partnership,
+          bringing our teams&apos; strengths together to support organizations
+          across the UK, USA, and India.
         </p>
         <p>
-          Our collaborative approach brings both companies together to
-          understand each business need and explore a thoughtful way forward.
+          We collaborate from discovery through delivery, combining technology
+          and business expertise to shape practical solutions around each
+          client&apos;s needs.
         </p>
         <button
           aria-controls="enquiry-modal"
@@ -39,7 +40,7 @@ export function AboutSection() {
         <span className="about-partnership-connector">in collaboration with</span>
         <p className="about-partner-name">ANK Square Pvt. Ltd.</p>
         <span aria-hidden="true" className="about-partnership-rule" />
-        <p className="about-region">Working across the USA and India</p>
+        <p className="about-region">Working across the UK, USA, and India</p>
       </aside>
     </section>
   );

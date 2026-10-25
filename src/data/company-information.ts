@@ -1,5 +1,5 @@
 export const companyInformation = {
-  email: "gracetechnologiesofficial@gmail.com",
+  email: "contact@gracetechnologies.uk",
   phone: null as string | null,
   address: null as string | null,
 } as const;
