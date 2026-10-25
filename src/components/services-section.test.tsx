@@ -1,7 +1,10 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { ServicesSection } from "@/components/services-section";
+import {
+  ServicesSection,
+  services as serviceDetails,
+} from "@/components/services-section";
 
 const services = [
   {
@@ -41,60 +44,27 @@ describe("Services section", () => {
   );
 
   it.each(services)(
-    "connects $title to its service details and enquiry",
-    ({ id, title, heading, approach, cta }) => {
-      expect(markup).toContain(`href="#service-details-${id}"`);
-      expect(markup).toContain(`id="service-details-${id}"`);
-      expect(markup).toContain(
-        `<h3 class="service-detail-title" id="service-details-title-${id}">${title}</h3><h4 class="service-detail-subheading">${heading}</h4>`,
-      );
-      expect(markup).toContain(approach);
-      expect(markup).toContain(`data-enquiry-service="${title}"`);
-      expect(markup).toContain(cta);
+    "links $title to its dedicated service page",
+    ({ id }) => {
+      expect(markup).toContain(`href="/services/${id}"`);
+      expect(serviceDetails.find((service) => service.id === id)).toBeDefined();
     },
   );
 
-  it("does not send service links back to the partnership section", () => {
-    expect(markup).not.toContain('href="#partnership"');
-  });
+  it.each(serviceDetails)(
+    "provides overview, features, approach, and use cases for $title",
+    (service) => {
+      expect(service.description).toBeTruthy();
+      expect(service.details.heading).toBeTruthy();
+      expect(service.details.challenge).toBeTruthy();
+      expect(service.keyFeatures.length).toBeGreaterThan(0);
+      expect(service.useCases.length).toBeGreaterThan(0);
+      expect(service.details.approach.length).toBeGreaterThan(0);
+    },
+  );
 
-  it("omits tailored-solution lists while retaining service enquiries", () => {
-    expect(markup).not.toContain("Our Tailored Solutions");
-    expect(markup).not.toContain("service-solutions-list");
-    expect(markup).toContain("Discuss Your Digital Project");
-  });
-
-  it("renders the provided service illustrations with descriptive alt text", () => {
-    expect(markup).toContain('src="/images/web-development.png"');
-    expect(markup).toContain(
-      'alt="Developer working at a laptop with code and gears"',
-    );
-    expect(markup).toContain('width="956" height="716"');
-    expect(markup).toContain('src="/images/merchant-account-management.jpg"');
-    expect(markup).toContain(
-      'alt="Two professionals discussing across a desk with a laptop"',
-    );
-    expect(markup).toContain('width="2400" height="1800"');
-    expect(markup).toContain('src="/images/agentic-ai.svg"');
-    expect(markup).toContain(
-      'alt="Artificial intelligence illustration representing smart business workflows"',
-    );
-    expect(markup).toContain('width="500" height="500"');
-    expect(markup).toContain('src="/images/digital-marketing.jpg"');
-    expect(markup).toContain(
-      'alt="Business owner reviewing a declining financial graph on a laptop"',
-    );
-    expect(markup).toContain('width="6251" height="4690"');
-    expect(markup).toContain("service-detail--image-right");
-    expect(markup).toContain("service-detail--image-left");
-    expect(markup).toContain(
-      'class="service-detail service-detail--with-image service-detail--image-left" id="service-details-merchant-account-management"',
-    );
-  });
-
-  it("avoids unsupported payment and AI outcome promises", () => {
-    expect(markup.toLowerCase()).not.toContain("guaranteed approval");
-    expect(markup.toLowerCase()).not.toContain("instant account activation");
-    expect(markup.toLowerCase()).not.toContain("completely replace employees");
+  it("renders all service cards without in-page detail links", () => {
+    expect(markup).toContain("Learn More");
+    expect(markup).not.toContain("service-details-");
   });
 });

@@ -12,8 +12,7 @@ export function OurWorkSection() {
         <p className="eyebrow">Selected projects</p>
         <h2 id="our-work-title">Our Work</h2>
         <p>
-          A look at projects across digital development, merchant account
-          management, and workflow automation.
+          Selected work across web development and e-commerce business support.
         </p>
       </div>
 

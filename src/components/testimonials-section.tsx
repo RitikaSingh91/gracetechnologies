@@ -1,6 +1,7 @@
 "use client";
 
 import { testimonials } from "@/data/testimonials";
+import { FeedbackForm } from "@/components/feedback-form";
 import styles from "./testimonials-section.module.css";
 
 const publishedTestimonials = testimonials.filter(
@@ -90,6 +91,14 @@ export function TestimonialsSection() {
         These testimonials are illustrative sample content and are not verified
         customer reviews.
       </p>
+      <div className={styles.feedbackSection}>
+        <h3 className={styles.feedbackTitle}>Share your experience</h3>
+        <p className={styles.feedbackIntroduction}>
+          Tell us about working with Grace Technologies. Submissions are saved
+          for review and are not published automatically.
+        </p>
+        <FeedbackForm />
+      </div>
     </section>
   );
 }

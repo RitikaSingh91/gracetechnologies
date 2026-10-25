@@ -141,6 +141,24 @@
   line-height: var(--line-height-body);
 }
 
+.feedbackSection {
+  max-width: 52rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.feedbackTitle {
+  margin: 0 0 0.5rem;
+  color: var(--color-burgundy);
+  font-size: var(--font-size-card-heading);
+  line-height: 1.3;
+}
+
+.feedbackIntroduction {
+  margin: 0 0 1.25rem;
+  color: var(--color-muted);
+  line-height: var(--line-height-body);
+}
+
 .previewNote {
   margin: 0 0 1rem;
   padding: 0.875rem 1rem;

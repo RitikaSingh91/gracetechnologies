@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BrandLogo } from "@/components/brand-logo";
 
 export function AboutSection() {
@@ -34,12 +35,36 @@ export function AboutSection() {
       </div>
 
       <aside aria-label="Our collaboration" className="about-partnership">
-        <div aria-hidden="true" className="about-partnership-arch" />
-        <p className="eyebrow">A shared approach</p>
-        <BrandLogo className="about-partnership-logo" />
-        <span className="about-partnership-connector">in collaboration with</span>
-        <p className="about-partner-name">ANK Square Pvt. Ltd.</p>
-        <span aria-hidden="true" className="about-partnership-rule" />
+        <p className="eyebrow">Working in partnership</p>
+        <div className="about-partnership-logos">
+          <div className="about-partner-brand">
+            <BrandLogo className="about-partnership-logo" />
+            <span>Grace Technologies</span>
+          </div>
+          <span aria-hidden="true" className="about-partnership-connector">
+            +
+          </span>
+          <a
+            aria-label="ANK Square Pvt. Ltd. website"
+            className="about-partner-brand"
+            href="https://www.anksquare.com/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <Image
+              alt="ANK Square"
+              className="about-partnership-logo about-partnership-logo-ank"
+              height={160}
+              src="https://www.anksquare.com/logo.svg"
+              unoptimized
+              width={160}
+            />
+            <span>ANK Square Pvt. Ltd.</span>
+          </a>
+        </div>
+        <p className="about-partner-name">
+          Two teams, working together to support your business.
+        </p>
         <p className="about-region">Working across the UK, USA, and India</p>
       </aside>
     </section>

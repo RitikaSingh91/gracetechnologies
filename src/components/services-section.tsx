@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import { ServiceCard } from "@/components/service-card";
 
-type Service = Readonly<{
+export type Service = Readonly<{
   id: string;
   title: string;
   description: string;
@@ -14,6 +13,11 @@ type Service = Readonly<{
     width: number;
     height: number;
   }>;
+  keyFeatures: readonly Readonly<{
+    title: string;
+    description: string;
+  }>[];
+  useCases: readonly string[];
   details: Readonly<{
     heading: string;
     challenge: string;
@@ -22,7 +26,7 @@ type Service = Readonly<{
   }>;
 }>;
 
-const services: readonly Service[] = [
+export const services: readonly Service[] = [
   {
     id: "web-mobile-app-development",
     title: "Web & Mobile App Development",
@@ -35,6 +39,28 @@ const services: readonly Service[] = [
       width: 956,
       height: 716,
     },
+    keyFeatures: [
+      {
+        title: "Responsive web and mobile experiences",
+        description:
+          "Make it easier for customers to use your digital service across phones, tablets, and desktops.",
+      },
+      {
+        title: "User-focused design and development",
+        description:
+          "Give visitors clear journeys and useful content aligned with your business goals.",
+      },
+      {
+        title: "Testing and launch support",
+        description:
+          "Prepare your product for launch and identify practical opportunities to improve it over time.",
+      },
+    ],
+    useCases: [
+      "Launching a new business website or customer-facing web application.",
+      "Improving an existing website that is difficult to use on mobile devices.",
+      "Planning a mobile application to support a specific customer or operational need.",
+    ],
     details: {
       heading: "Digital Products Built Around Your Business",
       challenge:
@@ -84,6 +110,28 @@ const services: readonly Service[] = [
       width: 2400,
       height: 1800,
     },
+    keyFeatures: [
+      {
+        title: "Business and payment-needs assessment",
+        description:
+          "Clarify your business model, payment requirements, and the account setup questions that need attention.",
+      },
+      {
+        title: "Provider and documentation guidance",
+        description:
+          "Understand provider requirements and organize the business information needed for an application.",
+      },
+      {
+        title: "Practical ongoing support",
+        description:
+          "Get help understanding payment workflows and addressing account-management questions as they arise.",
+      },
+    ],
+    useCases: [
+      "A new online business preparing to accept customer payments.",
+      "A growing merchant reviewing payment-provider options and requirements.",
+      "A business that needs help organizing documentation or understanding payment operations.",
+    ],
     details: {
       heading: "Payment Solutions That Support Your Business",
       challenge:
@@ -132,6 +180,28 @@ const services: readonly Service[] = [
       width: 500,
       height: 500,
     },
+    keyFeatures: [
+      {
+        title: "Workflow discovery",
+        description:
+          "Find repetitive tasks, hand-offs, and manual information handling that may be suitable for improvement.",
+      },
+      {
+        title: "AI-assisted process design",
+        description:
+          "Explore fit-for-purpose automation while keeping people involved in decisions that need human judgment.",
+      },
+      {
+        title: "Implementation and evaluation",
+        description:
+          "Assess a workflow for usability, reliability, and business value before planning further improvements.",
+      },
+    ],
+    useCases: [
+      "Reducing repetitive data entry or document-handling steps.",
+      "Coordinating routine tasks across teams or business tools.",
+      "Exploring AI assistance for internal knowledge or customer-service workflows.",
+    ],
     details: {
       heading: "Turn Repetitive Work Into Smarter Workflows",
       challenge:
@@ -181,6 +251,28 @@ const services: readonly Service[] = [
       width: 6251,
       height: 4690,
     },
+    keyFeatures: [
+      {
+        title: "Audience and channel planning",
+        description:
+          "Understand who you want to reach and where your customers are most likely to find you.",
+      },
+      {
+        title: "Consistent digital messaging",
+        description:
+          "Align your website, search presence, and marketing content around clear business objectives.",
+      },
+      {
+        title: "Measurement and refinement",
+        description:
+          "Use available performance information to identify useful adjustments to campaigns and content.",
+      },
+    ],
+    useCases: [
+      "Building an online presence for a new business or service.",
+      "Reviewing existing marketing channels to find gaps or inconsistent messaging.",
+      "Planning a focused campaign to reach a defined customer audience.",
+    ],
     details: {
       heading: "Build Your Digital Presence With Purpose",
       challenge:
@@ -240,71 +332,10 @@ export function ServicesSection() {
           <ServiceCard
             key={service.id}
             {...service}
-            learnMoreHref={`#service-details-${service.id}`}
+            learnMoreHref={`/services/${service.id}`}
           />
         ))}
       </ul>
-
-      <div className="service-details">
-        {services.map((service) => (
-          <article
-            aria-labelledby={`service-details-title-${service.id}`}
-            className={`service-detail${service.image ? ` service-detail--with-image service-detail--image-${service.image.position}` : ""}`}
-            id={`service-details-${service.id}`}
-            key={service.id}
-            tabIndex={-1}
-          >
-            <div className="service-detail-copy">
-              <h3
-                className="service-detail-title"
-                id={`service-details-title-${service.id}`}
-              >
-                {service.title}
-              </h3>
-              <h4 className="service-detail-subheading">
-                {service.details.heading}
-              </h4>
-              <section aria-label="The business challenge">
-                <h4>The Challenge</h4>
-                <p>{service.details.challenge}</p>
-              </section>
-              <section aria-label="How we approach your challenges">
-                <h4>How We Approach Your Challenges</h4>
-                <ol className="service-approach-list">
-                  {service.details.approach.map((step) => (
-                    <li key={step.heading}>
-                      <strong>{step.heading}:</strong> {step.description}
-                    </li>
-                  ))}
-                </ol>
-              </section>
-              <button
-                aria-controls="enquiry-modal"
-                aria-haspopup="dialog"
-                className="button button-primary service-detail-cta"
-                data-enquiry-service={service.title}
-                data-enquiry-trigger
-                type="button"
-              >
-                {service.details.cta}
-              </button>
-            </div>
-            {service.image && (
-              <div className="service-detail-image-frame">
-                <Image
-                  alt={service.image.alt}
-                  className="service-detail-image"
-                  height={service.image.height}
-                  unoptimized
-                  sizes="(max-width: 640px) 100vw, (max-width: 900px) 80vw, 45vw"
-                  src={service.image.src}
-                  width={service.image.width}
-                />
-              </div>
-            )}
-          </article>
-        ))}
-      </div>
     </section>
   );
 }

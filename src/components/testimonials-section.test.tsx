@@ -46,5 +46,11 @@ describe("Testimonials section", () => {
     expect(markup).toContain(
       "These testimonials are illustrative sample content and are not verified customer reviews.",
     );
+    expect(markup).toContain("Share your experience");
+    expect(markup).toContain('id="feedback-message"');
+    expect(markup).toContain("Submit Feedback");
+    expect(markup).toContain(
+      "Submissions are saved for review and are not published automatically.",
+    );
   });
 });
