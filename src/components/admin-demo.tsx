@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { BrandLogo } from "@/components/brand-logo";
 import styles from "@/app/admin/admin.module.css";
 
@@ -53,35 +56,54 @@ const sections: ReadonlyArray<{
 }> = [
   { id: "dashboard", title: "Dashboard", subtitle: "A sample overview of the admin workspace." },
   { id: "contacts", title: "Contact messages", subtitle: "Example messages from the public contact form." },
+  { id: "whatsapp", title: "WhatsApp Analytics", subtitle: "An example of the aggregate engagement report." },
   { id: "enquiries", title: "Service enquiries", subtitle: "Example enquiries arranged by service and status." },
-  { id: "whatsapp", title: "WhatsApp analytics", subtitle: "An example of the aggregate engagement report." },
-  { id: "profile", title: "Admin profile", subtitle: "Example administrator account settings." },
+  { id: "profile", title: "Admin Profile", subtitle: "Example administrator account settings." },
 ];
 
 export function AdminDemo({ section }: Readonly<{ section: DemoSection }>) {
+  const [isNavigationOpen, setIsNavigationOpen] = useState(false);
   const currentSection = sections.find((item) => item.id === section) ?? sections[0];
   return (
     <div className={styles.shell}>
       <header className={styles.topbar}>
         <Link className={styles.brandLink} href="/admin/demo">
           <BrandLogo className={styles.adminBrandLogo} />
-          <span>Grace Technologies <small>Admin preview</small></span>
+          <span className={styles.brandText}>
+            <span className={styles.brandName}>Grace Technologies</span>
+            <small>Admin preview</small>
+          </span>
         </Link>
-        <Link className={styles.secondaryButton} href="/admin/login">Admin sign in</Link>
+        <button
+          aria-controls="admin-demo-navigation"
+          aria-expanded={isNavigationOpen}
+          aria-label={isNavigationOpen ? "Close dashboard menu" : "Open dashboard menu"}
+          className={styles.menuToggle}
+          onClick={() => setIsNavigationOpen((isOpen) => !isOpen)}
+          type="button"
+        >
+          <span aria-hidden="true">{isNavigationOpen ? "×" : "☰"}</span>
+        </button>
+        <Link className={`${styles.secondaryButton} ${styles.demoSignIn}`} href="/admin/login">Admin sign in</Link>
       </header>
       <div className={styles.shellBody}>
-        <nav aria-label="Demo navigation" className={styles.sidebar}>
+        <nav
+          aria-label="Demo navigation"
+          className={`${styles.sidebar}${isNavigationOpen ? ` ${styles.sidebarOpen}` : ""}`}
+          id="admin-demo-navigation"
+        >
           {sections.map((item) => (
             <Link
               aria-current={section === item.id ? "page" : undefined}
               className={styles.navLink}
               href={item.id === "dashboard" ? "/admin/demo" : `/admin/demo/${item.id}`}
               key={item.id}
+              onClick={() => setIsNavigationOpen(false)}
             >
               {item.title}
             </Link>
           ))}
-          <Link className={styles.publicLink} href="/">View public website ↗</Link>
+          <Link className={styles.publicLink} href="/" onClick={() => setIsNavigationOpen(false)}>View Public Website ↗</Link>
         </nav>
         <div className={styles.content}>
           <div className={styles.demoBanner} role="note">

@@ -311,6 +311,10 @@
   transition: background 150ms ease, border-color 150ms ease;
 }
 
+.demoSignIn {
+  justify-self: end;
+}
+
 .primaryButton {
   background: #702d3a;
   color: #fff;
@@ -656,23 +660,33 @@
 @media (max-width: 680px) {
   .topbar {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 0.5rem;
   }
 
-  .brandName {
+  .brandText {
     display: none;
   }
 
   .menuToggle {
     display: inline-flex;
+    grid-column: 2;
+    grid-row: 1;
   }
 
   .account {
-    align-items: flex-end;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: end;
+    align-items: center;
     flex-direction: row;
     gap: 0.35rem;
+  }
+
+  .demoSignIn {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 
   .accountEmail {
@@ -691,7 +705,7 @@
     position: static;
     display: none;
     grid-column: 1 / -1;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     overflow: visible;
     gap: 0.3rem;
     padding: 0.4rem;
@@ -711,7 +725,7 @@
   }
 
   .publicLink {
-    grid-column: 1 / -1;
+    grid-column: auto;
     margin: 0.25rem 0 0;
     border-top: 1px solid #e7dfdc;
   }

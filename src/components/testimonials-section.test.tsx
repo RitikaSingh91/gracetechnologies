@@ -46,10 +46,10 @@ describe("Testimonials section", () => {
     expect(markup).toContain(
       "These testimonials are illustrative sample content and are not verified customer reviews.",
     );
-    expect(markup).toContain("Share your experience");
-    expect(markup).toContain("Submit Feedback");
-    expect(markup).toContain('id="feedback-message"');
-    expect(markup).toContain('aria-label="5 stars"');
+    expect(markup).not.toContain("Share your experience");
+    expect(markup).not.toContain("Submit Feedback");
+    expect(markup).not.toContain('id="feedback-message"');
+    expect(markup).not.toContain('name="rating"');
     expect(markup).toContain('class="');
     expect(markup).toContain("MA");
     expect(markup).toContain("SM");

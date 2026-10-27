@@ -8,10 +8,10 @@ import styles from "@/app/admin/admin.module.css";
 
 const navigation = [
   { href: "/admin/dashboard", label: "Dashboard" },
-  { href: "/admin/contacts", label: "Contacts" },
-  { href: "/admin/enquiries", label: "Enquiries" },
-  { href: "/admin/whatsapp", label: "WhatsApp analytics" },
-  { href: "/admin/profile", label: "Admin profile" },
+  { href: "/admin/contacts", label: "Contact messages" },
+  { href: "/admin/whatsapp", label: "WhatsApp Analytics" },
+  { href: "/admin/enquiries", label: "Service enquiries" },
+  { href: "/admin/profile", label: "Admin Profile" },
 ] as const;
 
 export function AdminShell({
@@ -86,7 +86,7 @@ export function AdminShell({
               {item.label}
             </Link>
           ))}
-          <Link className={styles.publicLink} href="/" onClick={() => setIsNavigationOpen(false)}>View public website ↗</Link>
+          <Link className={styles.publicLink} href="/" onClick={() => setIsNavigationOpen(false)}>View Public Website ↗</Link>
         </nav>
         <div className={styles.content}>
           {error && <p className={styles.errorMessage} role="alert">{error}</p>}

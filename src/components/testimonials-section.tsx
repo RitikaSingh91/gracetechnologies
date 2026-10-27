@@ -1,7 +1,6 @@
 "use client";
 
 import { testimonials } from "@/data/testimonials";
-import { FeedbackForm } from "@/components/feedback-form";
 import styles from "./testimonials-section.module.css";
 
 const publishedTestimonials = testimonials.filter(
@@ -98,11 +97,6 @@ export function TestimonialsSection() {
         These testimonials are illustrative sample content and are not verified
         customer reviews.
       </p>
-      <div className={styles.feedback}>
-        <h3>Share your experience</h3>
-        <p>Your review will be checked before it appears on this page.</p>
-        <FeedbackForm />
-      </div>
     </section>
   );
 }

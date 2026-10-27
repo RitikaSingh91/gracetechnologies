@@ -23,5 +23,10 @@ describe("Admin mobile navigation", () => {
     expect(markup).toContain("Grace Technologies");
     expect(markup).toContain("Admin");
     expect(markup).toContain("Dashboard");
+    expect(markup).toContain("Contact messages");
+    expect(markup).toContain("WhatsApp Analytics");
+    expect(markup).toContain("Service enquiries");
+    expect(markup).toContain("Admin Profile");
+    expect(markup).toContain("View Public Website");
   });
 });
