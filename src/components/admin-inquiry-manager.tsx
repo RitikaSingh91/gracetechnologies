@@ -6,7 +6,7 @@ import styles from "@/app/admin/admin.module.css";
 type Inquiry = Readonly<{
   id: string;
   name: string;
-  email: string;
+  email: string | null;
   mobile_number: string | null;
   company: string | null;
   service: string;
@@ -232,7 +232,9 @@ export function AdminInquiryManager({
                   <span className={styles.statusBadge}>{formatStatus(record.status)}</span>
                 </header>
                 <div className={styles.recordContact}>
-                  <a href={`mailto:${encodeURIComponent(record.email)}`}>{record.email}</a>
+                  {record.email && (
+                    <a href={`mailto:${encodeURIComponent(record.email)}`}>{record.email}</a>
+                  )}
                   {record.mobile_number && <a href={`tel:${encodeURIComponent(record.mobile_number)}`}>{record.mobile_number}</a>}
                   {record.company && <span>{record.company}</span>}
                   {record.project_budget && <span>Budget: {record.project_budget}</span>}

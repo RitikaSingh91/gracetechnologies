@@ -248,28 +248,6 @@ export function EnquiryModal() {
             </div>
 
             <div className="form-field">
-              <label htmlFor="enquiry-company">Company Name (optional)</label>
-              <input
-                autoComplete="organization"
-                id="enquiry-company"
-                maxLength={160}
-                name="company"
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="enquiry-email">Email Address</label>
-              <input
-                autoComplete="email"
-                id="enquiry-email"
-                maxLength={254}
-                name="email"
-                required
-                type="email"
-              />
-            </div>
-
-            <div className="form-field">
               <label htmlFor="enquiry-phone">Phone Number</label>
               <input
                 autoComplete="tel"
@@ -299,18 +277,6 @@ export function EnquiryModal() {
                     {service}
                   </option>
                 ))}
-              </select>
-            </div>
-
-            <div className="form-field form-field-full">
-              <label htmlFor="enquiry-budget">Project Budget (optional)</label>
-              <select defaultValue="" id="enquiry-budget" name="project_budget">
-                <option value="">Select a budget range</option>
-                <option value="Under $5,000">Under $5,000</option>
-                <option value="$5,000–$15,000">$5,000–$15,000</option>
-                <option value="$15,000–$50,000">$15,000–$50,000</option>
-                <option value="$50,000+">$50,000+</option>
-                <option value="Not sure yet">Not sure yet</option>
               </select>
             </div>
 

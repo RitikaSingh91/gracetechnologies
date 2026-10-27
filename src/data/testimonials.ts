@@ -5,6 +5,7 @@ export type Testimonial = Readonly<{
   clientName: string;
   clientDescription: string;
   published: boolean;
+  rating?: number;
 }>;
 
 export const testimonials: readonly Testimonial[] = [

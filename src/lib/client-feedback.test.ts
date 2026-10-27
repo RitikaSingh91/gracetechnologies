@@ -5,6 +5,7 @@ const validFeedback = {
   name: "Jordan Taylor",
   email: "jordan@company.com",
   service: "Digital Marketing",
+  rating: 5,
   feedback: "The team was clear and helpful throughout the project.",
 };
 
@@ -33,6 +34,8 @@ describe("Client feedback validation", () => {
     [{ ...validFeedback, name: "" }, "at least 10 characters"],
     [{ ...validFeedback, email: "not-an-email" }, "valid email"],
     [{ ...validFeedback, service: "Unknown" }, "listed services"],
+    [{ ...validFeedback, rating: undefined }, "star rating"],
+    [{ ...validFeedback, rating: 6 }, "star rating"],
     [{ ...validFeedback, feedback: "Short" }, "at least 10 characters"],
   ])("rejects invalid feedback submissions", (input, expectedMessage) => {
     const result = validateClientFeedback(input);

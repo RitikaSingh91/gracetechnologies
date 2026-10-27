@@ -1,6 +1,7 @@
 "use client";
 
 import { testimonials } from "@/data/testimonials";
+import { FeedbackForm } from "@/components/feedback-form";
 import styles from "./testimonials-section.module.css";
 
 const publishedTestimonials = testimonials.filter(
@@ -70,16 +71,25 @@ export function TestimonialsSection() {
             )}
             <div aria-hidden="true" className={styles.divider} />
             <div className={styles.attribution}>
-              <strong>
-                {testimonial.published
-                  ? testimonial.clientName
-                  : "Feedback placeholder"}
-              </strong>
-              <span>
-                {testimonial.published
-                  ? testimonial.clientDescription
-                  : "Not published"}
+              <span aria-hidden="true" className={styles.avatar}>
+                {testimonial.clientName
+                  .split(/\s+/)
+                  .map((part) => part[0])
+                  .join("")
+                  .slice(0, 2)}
               </span>
+              <div className={styles.attributionText}>
+                <strong>
+                  {testimonial.published
+                    ? testimonial.clientName
+                    : "Feedback placeholder"}
+                </strong>
+                <span>
+                  {testimonial.published
+                    ? testimonial.clientDescription
+                    : "Not published"}
+                </span>
+              </div>
             </div>
           </li>
         ))}
@@ -88,6 +98,11 @@ export function TestimonialsSection() {
         These testimonials are illustrative sample content and are not verified
         customer reviews.
       </p>
+      <div className={styles.feedback}>
+        <h3>Share your experience</h3>
+        <p>Your review will be checked before it appears on this page.</p>
+        <FeedbackForm />
+      </div>
     </section>
   );
 }

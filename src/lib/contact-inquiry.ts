@@ -2,7 +2,7 @@ import { contactServices, type ContactService } from "@/data/contact-services";
 
 export type ContactInquiry = Readonly<{
   name: string;
-  email: string;
+  email: string | null;
   mobileNumber: string | null;
   company: string | null;
   service: ContactService | null;
@@ -32,7 +32,13 @@ export function validateContactInquiry(
 
   const values = input as Record<string, unknown>;
   const name = readTrimmedText(values, "name");
-  const email = readTrimmedText(values, "email");
+  const emailValue = values.email;
+  const email =
+    emailValue === undefined || emailValue === null
+      ? ""
+      : typeof emailValue === "string"
+        ? emailValue.trim()
+        : null;
   const mobileValue = values.mobile_number ?? values.phone;
   const phoneRequired = Object.hasOwn(values, "phone");
   const mobileNumber =
@@ -62,7 +68,8 @@ export function validateContactInquiry(
   if (
     !name ||
     name.length < 2 ||
-    !email ||
+    (submissionType === "contact" && !email) ||
+    email === null ||
     !message ||
     mobileNumber === null ||
     company === null ||
@@ -78,7 +85,7 @@ export function validateContactInquiry(
 
   if (
     name.length > 100 ||
-    email.length > 254 ||
+    (email !== "" && email.length > 254) ||
     mobileNumber.length > 40 ||
     company.length > 160 ||
     projectBudget.length > 100 ||
@@ -91,7 +98,7 @@ export function validateContactInquiry(
     };
   }
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return {
       valid: false,
       error: "Please enter a valid business email address.",
@@ -125,7 +132,7 @@ export function validateContactInquiry(
     valid: true,
     inquiry: {
       name,
-      email,
+      email: email || null,
       mobileNumber: mobileNumber || null,
       company: company || null,
       service: selectedService,

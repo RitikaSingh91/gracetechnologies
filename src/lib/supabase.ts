@@ -28,7 +28,7 @@ export class SupabaseRequestError extends Error {
 export type AdminInquiry = Readonly<{
   id: string;
   name: string;
-  email: string;
+  email: string | null;
   mobile_number: string | null;
   company: string | null;
   service: string;
@@ -128,7 +128,7 @@ async function supabaseServiceRequest(
 
 async function insertSupabaseRecord(
   table: "contact_inquiries" | "client_feedback" | "whatsapp_click_events",
-  record: Readonly<Record<string, string | null | boolean>>,
+  record: Readonly<Record<string, string | null | boolean | number>>,
 ): Promise<void> {
   const { projectUrl, serviceRoleKey } = getSupabaseCredentials();
   const response = await fetch(
@@ -444,6 +444,7 @@ export async function insertClientFeedback(
     name: feedback.name,
     email: feedback.email,
     service: feedback.service,
+    rating: feedback.rating,
     feedback: feedback.feedback,
   });
 }

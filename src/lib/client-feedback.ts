@@ -4,6 +4,7 @@ export type ClientFeedback = Readonly<{
   name: string;
   email: string;
   service: ContactService;
+  rating: number;
   feedback: string;
 }>;
 
@@ -22,14 +23,24 @@ export function validateClientFeedback(
   const name = typeof values.name === "string" ? values.name.trim() : "";
   const email = typeof values.email === "string" ? values.email.trim() : "";
   const service = typeof values.service === "string" ? values.service.trim() : "";
+  const rating = values.rating;
   const feedback =
     typeof values.feedback === "string" ? values.feedback.trim() : "";
 
-  if (name.length < 2 || !email || !service || feedback.length < 10) {
+  if (
+    name.length < 2 ||
+    !email ||
+    !service ||
+    typeof rating !== "number" ||
+    !Number.isInteger(rating) ||
+    rating < 1 ||
+    rating > 5 ||
+    feedback.length < 10
+  ) {
     return {
       valid: false,
       error:
-        "Please provide your name, email, service, and at least 10 characters of feedback.",
+        "Please provide your name, email, service, a star rating, and at least 10 characters of feedback.",
     };
   }
 
@@ -56,6 +67,6 @@ export function validateClientFeedback(
 
   return {
     valid: true,
-    feedback: { name, email, service: selectedService, feedback },
+    feedback: { name, email, service: selectedService, rating, feedback },
   };
 }

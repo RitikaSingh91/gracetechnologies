@@ -14,6 +14,9 @@ alter table public.contact_inquiries
   add column if not exists mobile_number text;
 
 alter table public.contact_inquiries
+  alter column email drop not null;
+
+alter table public.contact_inquiries
   add column if not exists project_budget text;
 
 alter table public.contact_inquiries
@@ -97,13 +100,17 @@ create table if not exists public.client_feedback (
   name text not null,
   email text not null,
   service text not null,
+  rating integer check (rating between 1 and 5),
   feedback text not null,
   published boolean not null default false,
   created_at timestamptz not null default now()
 );
 
+alter table public.client_feedback
+  add column if not exists rating integer check (rating between 1 and 5);
+
 alter table public.client_feedback enable row level security;
 
 revoke all on table public.client_feedback from anon, authenticated;
-grant insert (name, email, service, feedback)
+grant insert (name, email, service, rating, feedback)
   on table public.client_feedback to service_role;

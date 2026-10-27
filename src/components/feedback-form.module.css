@@ -29,6 +29,66 @@
   font-weight: var(--font-weight-semibold);
 }
 
+.ratingField {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ratingField legend {
+  margin-bottom: 0.5rem;
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-semibold);
+}
+
+.ratingOptions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.ratingOption {
+  position: relative;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  background: var(--color-cream);
+  color: var(--color-muted);
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.ratingOption:has(input:checked) {
+  border-color: var(--color-gold);
+  background: var(--color-paper);
+  color: var(--color-gold);
+}
+
+.ratingOptions:has(input:checked) .ratingOption {
+  color: var(--color-gold);
+}
+
+.ratingOption:has(input:checked) ~ .ratingOption {
+  color: var(--color-muted);
+}
+
+.ratingOption:has(input:focus-visible) {
+  outline: 3px solid var(--color-burgundy-tint);
+  outline-offset: 2px;
+}
+
+.ratingOption input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
 .field input,
 .field select,
 .field textarea {

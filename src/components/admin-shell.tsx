@@ -20,6 +20,7 @@ export function AdminShell({
 }: Readonly<{ children: ReactNode; email: string }>) {
   const pathname = usePathname();
   const router = useRouter();
+  const [isNavigationOpen, setIsNavigationOpen] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
   const [error, setError] = useState("");
 
@@ -46,8 +47,21 @@ export function AdminShell({
       <header className={styles.topbar}>
         <Link className={styles.brandLink} href="/admin/dashboard">
           <BrandLogo className={styles.adminBrandLogo} />
-          <span>Grace Technologies <small>Admin</small></span>
+          <span className={styles.brandText}>
+            <span className={styles.brandName}>Grace Technologies</span>
+            <small>Admin</small>
+          </span>
         </Link>
+        <button
+          aria-controls="admin-navigation"
+          aria-expanded={isNavigationOpen}
+          aria-label={isNavigationOpen ? "Close dashboard menu" : "Open dashboard menu"}
+          className={styles.menuToggle}
+          onClick={() => setIsNavigationOpen((isOpen) => !isOpen)}
+          type="button"
+        >
+          <span aria-hidden="true">{isNavigationOpen ? "×" : "☰"}</span>
+        </button>
         <div className={styles.account}>
           <span className={styles.accountEmail}>{email}</span>
           <button className={styles.secondaryButton} disabled={isSigningOut} onClick={signOut} type="button">
@@ -56,18 +70,23 @@ export function AdminShell({
         </div>
       </header>
       <div className={styles.shellBody}>
-        <nav aria-label="Admin navigation" className={styles.sidebar}>
+        <nav
+          aria-label="Admin navigation"
+          className={`${styles.sidebar}${isNavigationOpen ? ` ${styles.sidebarOpen}` : ""}`}
+          id="admin-navigation"
+        >
           {navigation.map((item) => (
             <Link
               aria-current={pathname === item.href ? "page" : undefined}
               className={styles.navLink}
               href={item.href}
               key={item.href}
+              onClick={() => setIsNavigationOpen(false)}
             >
               {item.label}
             </Link>
           ))}
-          <Link className={styles.publicLink} href="/">View public website ↗</Link>
+          <Link className={styles.publicLink} href="/" onClick={() => setIsNavigationOpen(false)}>View public website ↗</Link>
         </nav>
         <div className={styles.content}>
           {error && <p className={styles.errorMessage} role="alert">{error}</p>}

@@ -8,6 +8,7 @@ type FeedbackFields = Readonly<{
   name: string;
   email: string;
   service: string;
+  rating: string;
   feedback: string;
 }>;
 
@@ -18,6 +19,7 @@ const initialFields: FeedbackFields = {
   name: "",
   email: "",
   service: "",
+  rating: "",
   feedback: "",
 };
 
@@ -41,6 +43,10 @@ function validateFields(fields: FeedbackFields): FeedbackErrors {
 
   if (!contactServices.some((service) => service === fields.service)) {
     errors.service = "Select the service you are sharing feedback about.";
+  }
+
+  if (!["1", "2", "3", "4", "5"].includes(fields.rating)) {
+    errors.rating = "Choose a star rating from 1 to 5.";
   }
 
   if (feedback.length < 10) {
@@ -88,6 +94,7 @@ export function FeedbackForm() {
           name: fields.name.trim(),
           email: fields.email.trim(),
           service: fields.service,
+          rating: Number(fields.rating),
           feedback: fields.feedback.trim(),
         }),
       });
@@ -167,6 +174,34 @@ export function FeedbackForm() {
             </span>
           )}
         </div>
+
+        <fieldset
+          aria-describedby={errors.rating ? "feedback-rating-error" : undefined}
+          aria-invalid={Boolean(errors.rating)}
+          className={`${styles.field} ${styles.fieldFull} ${styles.ratingField}`}
+        >
+          <legend>How would you rate your experience?</legend>
+          <div className={styles.ratingOptions}>
+            {[1, 2, 3, 4, 5].map((rating) => (
+              <label className={styles.ratingOption} key={rating}>
+                <input
+                  checked={fields.rating === String(rating)}
+                  name="rating"
+                  onChange={() => updateField("rating", String(rating))}
+                  type="radio"
+                  value={rating}
+                  aria-label={`${rating} ${rating === 1 ? "star" : "stars"}`}
+                />
+                <span aria-hidden="true">★</span>
+              </label>
+            ))}
+          </div>
+          {errors.rating && (
+            <span className={styles.error} id="feedback-rating-error">
+              {errors.rating}
+            </span>
+          )}
+        </fieldset>
 
         <div className={`${styles.field} ${styles.fieldFull}`}>
           <label htmlFor="feedback-service">Service</label>

@@ -11,6 +11,7 @@ const feedback = {
   name: "Jordan Taylor",
   email: "jordan@company.com",
   service: "Digital Marketing" as const,
+  rating: 5,
   feedback: "The team was clear and helpful throughout the project.",
 };
 

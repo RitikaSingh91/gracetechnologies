@@ -63,6 +63,30 @@ describe("Contact inquiry validation", () => {
     expect(result.valid).toBe(true);
   });
 
+  it("allows service enquiries without email while keeping contact email required", () => {
+    const enquiry = validateContactInquiry({
+      name: "Jordan Taylor",
+      phone: "+44 20 7946 0958",
+      service: "Digital Marketing",
+      message: "Please contact me about a project.",
+      submission_type: "enquiry",
+    });
+    const contact = validateContactInquiry({
+      name: "Jordan Taylor",
+      phone: "+44 20 7946 0958",
+      message: "Please contact me about a project.",
+    });
+
+    expect(enquiry).toMatchObject({
+      valid: true,
+      inquiry: { email: null, submissionType: "enquiry" },
+    });
+    expect(contact).toMatchObject({
+      valid: false,
+      error: "Please complete all required fields and try again.",
+    });
+  });
+
   it("classifies the public contact form separately from service enquiries", () => {
     const contact = validateContactInquiry(validInquiry);
     const enquiry = validateContactInquiry({

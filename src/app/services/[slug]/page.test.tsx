@@ -18,8 +18,9 @@ describe("Service detail enquiry flow", () => {
 
     expect(markup.split(selectedServiceAttribute)).toHaveLength(3);
     expect(markup).toContain('data-enquiry-trigger="true"');
-    expect(markup).toContain('name="project_budget"');
-    expect(markup).toContain('name="company"');
+    expect(markup).not.toContain('name="project_budget"');
+    expect(markup).not.toContain('name="company"');
+    expect(markup).not.toContain('name="email"');
     expect(markup).toContain('name="phone"');
     expect(markup).toContain("Project Description or Message");
     expect(markup).not.toContain('href="/#contact">Contact Us');
