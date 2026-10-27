@@ -11,17 +11,16 @@ export function AboutSection() {
       <div className="about-copy">
         <p className="eyebrow">Our Partnership</p>
         <h2 id="about-title">
-          Technology built around people and possibilities.
+          A partnership built around your business.
         </h2>
         <p>
           Grace Technologies Ltd. and ANK Square Pvt. Ltd. work in partnership,
-          bringing our teams&apos; strengths together to support organizations
+          bringing complementary expertise together to support organizations
           across the UK, USA, and India.
         </p>
         <p>
-          We collaborate from discovery through delivery, combining technology
-          and business expertise to shape practical solutions around each
-          client&apos;s needs.
+          We keep collaboration practical, communication clear, and decisions
+          focused on your business needs.
         </p>
         <button
           aria-controls="enquiry-modal"
@@ -63,9 +62,14 @@ export function AboutSection() {
           </a>
         </div>
         <p className="about-partner-name">
-          Two teams, working together to support your business.
+          Two teams, aligned around your goals.
         </p>
         <p className="about-region">Working across the UK, USA, and India</p>
+        <ul aria-label="How we work together" className="about-partnership-values">
+          <li>Clear client communication</li>
+          <li>Transparent collaboration</li>
+          <li>Built for lasting relationships</li>
+        </ul>
       </aside>
     </section>
   );

@@ -150,7 +150,10 @@ export function EnquiryModal() {
     setSubmissionIsError(false);
 
     const formData = new FormData(event.currentTarget);
-    const inquiry = Object.fromEntries(formData.entries());
+    const inquiry = {
+      ...Object.fromEntries(formData.entries()),
+      submission_type: "enquiry",
+    };
 
     try {
       const response = await fetch("/api/contact", {

@@ -8,12 +8,12 @@ export function OurWorkSection() {
       className="our-work-section page-container"
       id="our-work"
     >
-      <div className="section-heading">
-        <p className="eyebrow">Selected projects</p>
-        <h2 id="our-work-title">Our Work</h2>
-        <p>
-          Selected work across web development and e-commerce business support.
-        </p>
+      <div className="section-heading our-work-heading">
+        <h2 id="our-work-title">
+          <span className="our-work-heading-accent">Selected Projects</span>
+          <span className="our-work-heading-divider" aria-hidden="true"> | </span>
+          <span>Our Work</span>
+        </h2>
       </div>
 
       <div className="projects-grid">

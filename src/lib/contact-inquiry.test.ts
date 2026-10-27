@@ -62,4 +62,31 @@ describe("Contact inquiry validation", () => {
 
     expect(result.valid).toBe(true);
   });
+
+  it("classifies the public contact form separately from service enquiries", () => {
+    const contact = validateContactInquiry(validInquiry);
+    const enquiry = validateContactInquiry({
+      ...validInquiry,
+      service: "Digital Marketing",
+      submission_type: "enquiry",
+    });
+
+    expect(contact).toMatchObject({
+      valid: true,
+      inquiry: { submissionType: "contact" },
+    });
+    expect(enquiry).toMatchObject({
+      valid: true,
+      inquiry: { submissionType: "enquiry" },
+    });
+  });
+
+  it("rejects unknown submission types", () => {
+    const result = validateContactInquiry({
+      ...validInquiry,
+      submission_type: "internal",
+    });
+
+    expect(result.valid).toBe(false);
+  });
 });

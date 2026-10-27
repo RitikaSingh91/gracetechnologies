@@ -7,6 +7,7 @@ export type ContactInquiry = Readonly<{
   company: string | null;
   service: ContactService | null;
   message: string;
+  submissionType: "contact" | "enquiry";
 }>;
 
 type ContactInquiryValidation =
@@ -48,6 +49,7 @@ export function validateContactInquiry(
         : null;
   const service = readTrimmedText(values, "service");
   const message = readTrimmedText(values, "message");
+  const submissionType = values.submission_type ?? "contact";
 
   if (
     !name ||
@@ -56,7 +58,8 @@ export function validateContactInquiry(
     !message ||
     mobileNumber === null ||
     company === null ||
-    (phoneRequired && !mobileNumber)
+    (phoneRequired && !mobileNumber) ||
+    (submissionType !== "contact" && submissionType !== "enquiry")
   ) {
     return {
       valid: false,
@@ -117,6 +120,7 @@ export function validateContactInquiry(
       company: company || null,
       service: selectedService,
       message,
+      submissionType,
     },
   };
 }

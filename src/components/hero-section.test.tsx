@@ -25,15 +25,26 @@ describe("Homepage hero", () => {
     expect(markup).toContain("24/7");
   });
 
-  it("presents both legal company names as an accessible partnership lockup", () => {
+  it("keeps the homepage hero focused on the business technology message", () => {
     expect(markup).toContain(
-      'aria-label="Grace Technologies Ltd. in collaboration with ANK Square Pvt. Ltd."',
+      "<h1 id=\"hero-title\">Thoughtful technology for your business.</h1>",
     );
     expect(markup).toContain(
-      '<span class="hero-partnership-caption">In collaboration</span>',
+      "Digital solutions for growing businesses",
     );
-    expect(markup).toContain("<span>Grace Technologies Ltd.</span>");
-    expect(markup).toContain('aria-hidden="true" class="hero-partnership-separator"');
-    expect(markup).toContain("<span>ANK Square Pvt. Ltd.</span>");
+    expect(markup).not.toContain("ANK Square");
+    expect(markup).not.toContain("In collaboration");
+  });
+
+  it("groups the headline, copy, and calls to action in one hero column", () => {
+    const content = markup.slice(
+      markup.indexOf('<div class="hero-copy hero-text">'),
+      markup.indexOf('<div aria-hidden="true" class="hero-image-wrapper">'),
+    );
+
+    expect(content).toContain("Thoughtful technology for your business.");
+    expect(content).toContain("We help businesses build better digital experiences");
+    expect(content).toContain("Explore Our Services");
+    expect(content).toContain("View Our Work");
   });
 });

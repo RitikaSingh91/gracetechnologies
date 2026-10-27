@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { WhatsAppClickTracker } from "@/components/whatsapp-click-tracker";
 import "./globals.css";
 
 const inter = localFont({
@@ -32,7 +33,10 @@ export default function RootLayout({
 }>) {
   return (
     <html className={inter.variable} lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <WhatsAppClickTracker />
+      </body>
     </html>
   );
 }

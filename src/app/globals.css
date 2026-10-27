@@ -47,6 +47,32 @@
   box-sizing: border-box;
 }
 
+.about-partnership-values {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-partnership-values li {
+  display: grid;
+  min-width: 0;
+  min-height: 3.5rem;
+  align-content: center;
+  padding: 0.5rem;
+  border: 1px solid var(--color-burgundy-tint);
+  border-radius: var(--radius-control);
+  background: var(--color-peach-tint);
+  color: var(--color-burgundy);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
@@ -159,7 +185,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   grid-column: 2;
-  gap: clamp(1rem, 3vw, 2.5rem);
+  gap: clamp(1.1rem, 1.7vw, 1.5rem);
   color: var(--color-ink);
   font-size: var(--font-size-navigation);
   font-weight: var(--font-weight-medium);
@@ -372,8 +398,8 @@ button:focus-visible {
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   align-items: center;
   column-gap: clamp(1.5rem, 3vw, 2.5rem);
-  row-gap: clamp(2.5rem, 5vw, 4rem);
-  padding-block: clamp(3.5rem, 6vw, 5rem);
+  row-gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding-block: clamp(2.5rem, 4vw, 3.5rem);
 }
 
 .hero-text {
@@ -417,40 +443,6 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
-.hero-partnership {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  column-gap: 0.65rem;
-  row-gap: 0.35rem;
-  padding: 0.65rem 0.85rem;
-  border: 1px solid var(--color-burgundy-tint);
-  border-radius: var(--radius-control);
-  background: var(--color-paper);
-}
-
-.hero-partnership-caption {
-  flex-basis: 100%;
-  color: var(--color-muted);
-  font-size: 0.625rem;
-  letter-spacing: 0.18em;
-}
-
-.hero-partnership-separator {
-  display: inline-grid;
-  width: 1.5rem;
-  height: 1.5rem;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--color-burgundy);
-  color: var(--color-peach);
-  font-size: 0.875rem;
-  letter-spacing: 0;
-  line-height: 1;
-}
-
 .hero h1,
 .section-heading h2,
 .about-copy h2,
@@ -461,10 +453,10 @@ button:focus-visible {
 }
 
 .hero h1 {
-  max-width: 18ch;
-  margin: 1.25rem 0 1.25rem;
-  font-size: var(--font-size-hero);
-  line-height: var(--line-height-heading);
+  max-width: none;
+  margin: 0.5rem 0 0;
+  font-size: clamp(2.75rem, 5.4vw, 4.35rem);
+  line-height: 1.08;
   text-wrap: balance;
 }
 
@@ -703,6 +695,48 @@ button:focus-visible {
   font-size: var(--font-size-section);
   line-height: var(--line-height-heading);
   text-wrap: balance;
+}
+
+.services-section .section-heading h2,
+.our-work-section .section-heading h2 {
+  font-size: clamp(2.35rem, 4vw, 3.4rem);
+}
+
+.services-section .section-heading {
+  max-width: none;
+}
+
+.our-work-section .our-work-heading {
+  max-width: none;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.our-work-section .our-work-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 2.8vw, 3.4rem);
+  text-wrap: nowrap;
+}
+
+.our-work-heading-accent {
+  color: var(--color-gold);
+}
+
+.our-work-heading-divider {
+  color: var(--color-burgundy);
+}
+
+@media (min-width: 901px) {
+  .services-section .section-heading h2 {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1100px) {
+  .our-work-section .our-work-heading h2 {
+    font-size: clamp(1.65rem, 3.2vw, 2.5rem);
+    text-wrap: balance;
+  }
 }
 
 .section-heading > p:last-child {
@@ -954,16 +988,18 @@ button:focus-visible {
 }
 
 .our-work-section {
-  padding-block: clamp(3.75rem, 7vw, 5.75rem);
+  padding-block: clamp(3rem, 5vw, 4.5rem);
   border-top: 1px solid var(--color-line);
 }
 
-
+.our-work-section .section-heading {
+  margin-bottom: 2rem;
+}
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
 }
 
 .project-card {
@@ -1096,10 +1132,10 @@ button:focus-visible {
 .project-card-content {
   display: flex;
   flex: 1;
-  min-height: 18rem;
+  min-height: 0;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0.75rem 1.5rem 1.5rem;
+  padding: 1rem clamp(1.25rem, 2vw, 1.75rem) 1.5rem;
 }
 
 .project-card--centered .project-card-content {
@@ -1129,12 +1165,10 @@ button:focus-visible {
 }
 
 .project-card-content h3 {
-  display: flex;
-  height: 5rem;
-  flex: 0 0 5rem;
-  align-items: center;
-  justify-content: center;
-  margin: 0.35rem 0 0.75rem;
+  display: block;
+  height: auto;
+  flex: 0 0 auto;
+  margin: 0.5rem 0 0.75rem;
   color: var(--color-burgundy);
   font-weight: var(--font-weight-semibold);
   text-wrap: balance;
@@ -1194,10 +1228,10 @@ button:focus-visible {
 .project-description {
   width: 100%;
   margin: 0;
-  padding: 1rem;
-  border-left: 3px solid var(--color-burgundy);
-  border-radius: 0 var(--radius-control) var(--radius-control) 0;
-  background: var(--color-cream);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--color-ink);
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
@@ -2300,8 +2334,8 @@ a.about-partner-brand:hover {
   }
 
   .main-navigation {
-    gap: 0.875rem;
-    font-size: var(--font-size-navigation);
+    gap: 0.9rem;
+    font-size: 0.875rem;
   }
 
   .header-consultation-button {
@@ -2330,8 +2364,8 @@ a.about-partner-brand:hover {
 
   .hero {
     min-height: auto;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    gap: 2rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.5rem;
   }
 
   .hero-statistics {
@@ -2352,17 +2386,13 @@ a.about-partner-brand:hover {
   .hero {
     grid-template-columns: minmax(0, 1fr);
     justify-items: center;
-    row-gap: 2rem;
+    row-gap: 1.25rem;
   }
 
   .hero-text {
     width: 100%;
     grid-column: 1;
     text-align: center;
-  }
-
-  .hero-partnership {
-    justify-content: center;
   }
 
   .hero-image-wrapper {
@@ -2379,6 +2409,10 @@ a.about-partner-brand:hover {
   .hero-description {
     margin-right: auto;
     margin-left: auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
   }
 
   .contact-layout {
@@ -2596,7 +2630,7 @@ a.about-partner-brand:hover {
   }
 
   .hero h1 {
-    font-size: clamp(2.25rem, 10vw, 2.625rem);
+    font-size: clamp(2.1rem, 8vw, 3rem);
   }
 
   .hero-actions {
@@ -2614,7 +2648,11 @@ a.about-partner-brand:hover {
 
   .projects-grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
+    gap: 1.25rem;
+  }
+
+  .about-partnership-values {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .project-brand-mark {

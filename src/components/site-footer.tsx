@@ -102,6 +102,27 @@ export function SiteFooter() {
                 {companyInformation.email}
               </a>
             </li>
+            <li>
+              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+                <rect
+                  height="15"
+                  rx="2"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                  width="19"
+                  x="2.5"
+                  y="4.5"
+                />
+                <path
+                  d="m3.5 6 8.5 7 8.5-7"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.7"
+                />
+              </svg>
+              <a href="mailto:contact@anksquare.com">contact@anksquare.com</a>
+            </li>
             {companyInformation.phone && (
               <li>
                 <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">

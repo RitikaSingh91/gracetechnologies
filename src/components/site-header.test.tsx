@@ -14,6 +14,7 @@ describe("Site header navigation", () => {
     expect(markup).toContain('aria-label="Mobile navigation"');
     expect(markup).toContain('href="/#services"');
     expect(markup).toContain('href="/#our-work"');
+    expect(markup).toContain('href="/#testimonials"');
     expect(markup).toContain('href="/#partnership"');
     expect(markup).toContain('href="/#contact"');
   });

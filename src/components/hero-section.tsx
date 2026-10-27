@@ -20,21 +20,11 @@ export function HeroSection() {
       className="hero hero-container page-container"
     >
       <div className="hero-copy hero-text">
-        <p
-          aria-label="Grace Technologies Ltd. in collaboration with ANK Square Pvt. Ltd."
-          className="eyebrow hero-partnership"
-        >
-          <span className="hero-partnership-caption">In collaboration</span>
-          <span>Grace Technologies Ltd.</span>
-          <span aria-hidden="true" className="hero-partnership-separator">
-            ×
-          </span>
-          <span>ANK Square Pvt. Ltd.</span>
-        </p>
+        <p className="eyebrow">Digital solutions for growing businesses</p>
         <h1 id="hero-title">Thoughtful technology for your business.</h1>
         <p className="hero-description">
-          We create thoughtful digital solutions that help businesses connect
-          with customers, work more efficiently, and grow with confidence.
+          We help businesses build better digital experiences, streamline
+          operations, and move forward with technology shaped around their goals.
         </p>
         <div className="hero-actions">
           <a className="button button-primary cta-button" href="#services">

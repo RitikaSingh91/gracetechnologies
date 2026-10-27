@@ -104,6 +104,7 @@ export function ContactSection() {
           phone: fields.phone.trim(),
           email: fields.email.trim(),
           message: fields.message.trim(),
+          submission_type: "contact",
           website: "",
         }),
       });

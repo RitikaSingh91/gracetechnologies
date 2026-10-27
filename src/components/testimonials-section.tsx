@@ -1,7 +1,6 @@
 "use client";
 
 import { testimonials } from "@/data/testimonials";
-import { FeedbackForm } from "@/components/feedback-form";
 import styles from "./testimonials-section.module.css";
 
 const publishedTestimonials = testimonials.filter(
@@ -20,15 +19,13 @@ export function TestimonialsSection() {
       id="testimonials"
     >
       <div className={styles.heading}>
-        <p className={styles.eyebrow}>CLIENT EXPERIENCES</p>
         <h2 className={styles.title} id="testimonials-title">
-          Trusted Partnerships. Meaningful Results.
+          <span className={styles.titleAccent}>Client Experiences</span>
+          <span className={styles.titleDivider} aria-hidden="true"> | </span>
+          <span>Trusted Partnerships</span>
+          <span className={styles.titleDivider} aria-hidden="true"> | </span>
+          <span className={styles.titleAccent}>Meaningful Results</span>
         </h2>
-        <p className={styles.introduction}>
-          Discover how businesses work with Grace Technologies to build better
-          digital experiences, improve operations, and solve real business
-          challenges.
-        </p>
       </div>
 
       {!hasPublishedTestimonials && (
@@ -91,14 +88,6 @@ export function TestimonialsSection() {
         These testimonials are illustrative sample content and are not verified
         customer reviews.
       </p>
-      <div className={styles.feedbackSection}>
-        <h3 className={styles.feedbackTitle}>Share your experience</h3>
-        <p className={styles.feedbackIntroduction}>
-          Tell us about working with Grace Technologies. Submissions are saved
-          for review and are not published automatically.
-        </p>
-        <FeedbackForm />
-      </div>
     </section>
   );
 }

@@ -11,7 +11,10 @@ describe("About section partnership", () => {
     expect(markup).toContain('alt="Grace Technologies Ltd."');
     expect(markup).toContain('alt="ANK Square"');
     expect(markup).toContain('src="https://www.anksquare.com/logo.svg"');
-    expect(markup).toContain("Two teams, working together to support your business.");
+    expect(markup).toContain("Two teams, aligned around your goals.");
     expect(markup).toContain("Working across the UK, USA, and India");
+    expect(markup).toContain("Clear client communication");
+    expect(markup).toContain("Transparent collaboration");
+    expect(markup).toContain("Built for lasting relationships");
   });
 });

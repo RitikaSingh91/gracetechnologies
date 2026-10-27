@@ -20,11 +20,11 @@ describe("Testimonials section", () => {
   it("shows the supplied client feedback and attributions", () => {
     const markup = renderToStaticMarkup(createElement(TestimonialsSection));
 
-    expect(markup).toContain("CLIENT EXPERIENCES");
-    expect(markup).toContain("Trusted Partnerships. Meaningful Results.");
-    expect(markup).toContain(
-      "Discover how businesses work with Grace Technologies to build better digital experiences, improve operations, and solve real business challenges.",
-    );
+    expect(markup).toContain("Client Experiences");
+    expect(markup).toContain("Trusted Partnerships");
+    expect(markup).toContain("Meaningful Results");
+    expect(markup).not.toContain("Trusted Partnerships.");
+    expect(markup).not.toContain("Discover how businesses work with Grace Technologies");
     expect(markup).toContain('aria-label="Client testimonials"');
     expect(markup.match(/<li class="[^"]*">/g)).toHaveLength(3);
     expect(markup).toContain("Web &amp; Mobile App Development");
@@ -46,11 +46,8 @@ describe("Testimonials section", () => {
     expect(markup).toContain(
       "These testimonials are illustrative sample content and are not verified customer reviews.",
     );
-    expect(markup).toContain("Share your experience");
-    expect(markup).toContain('id="feedback-message"');
-    expect(markup).toContain("Submit Feedback");
-    expect(markup).toContain(
-      "Submissions are saved for review and are not published automatically.",
-    );
+    expect(markup).not.toContain("Share your experience");
+    expect(markup).not.toContain("Submit Feedback");
+    expect(markup).not.toContain('id="feedback-message"');
   });
 });
