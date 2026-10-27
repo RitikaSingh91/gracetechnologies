@@ -32,6 +32,7 @@ export type AdminInquiry = Readonly<{
   mobile_number: string | null;
   company: string | null;
   service: string;
+  project_budget: string | null;
   message: string;
   submission_type: "contact" | "enquiry";
   status: string;
@@ -160,6 +161,7 @@ export async function insertContactInquiry(
     mobile_number: inquiry.mobileNumber,
     company: inquiry.company,
     service: inquiry.service ?? "General enquiry",
+    project_budget: inquiry.projectBudget,
     message: inquiry.message,
     submission_type: inquiry.submissionType,
   });
@@ -308,7 +310,7 @@ export async function listAdminInquiries(options: {
 }): Promise<AdminInquiryPage> {
   const params = new URLSearchParams({
     select:
-      "id,name,email,mobile_number,company,service,message,submission_type,status,internal_note,created_at",
+      "id,name,email,mobile_number,company,service,project_budget,message,submission_type,status,internal_note,created_at",
     submission_type: `eq.${options.type}`,
     order: "created_at.desc",
     limit: String(options.limit),

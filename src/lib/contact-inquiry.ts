@@ -6,6 +6,7 @@ export type ContactInquiry = Readonly<{
   mobileNumber: string | null;
   company: string | null;
   service: ContactService | null;
+  projectBudget: string | null;
   message: string;
   submissionType: "contact" | "enquiry";
 }>;
@@ -49,6 +50,13 @@ export function validateContactInquiry(
         : null;
   const service = readTrimmedText(values, "service");
   const message = readTrimmedText(values, "message");
+  const projectBudgetValue = values.project_budget;
+  const projectBudget =
+    projectBudgetValue === undefined || projectBudgetValue === null
+      ? ""
+      : typeof projectBudgetValue === "string"
+        ? projectBudgetValue.trim()
+        : null;
   const submissionType = values.submission_type ?? "contact";
 
   if (
@@ -58,6 +66,7 @@ export function validateContactInquiry(
     !message ||
     mobileNumber === null ||
     company === null ||
+    projectBudget === null ||
     (phoneRequired && !mobileNumber) ||
     (submissionType !== "contact" && submissionType !== "enquiry")
   ) {
@@ -72,6 +81,7 @@ export function validateContactInquiry(
     email.length > 254 ||
     mobileNumber.length > 40 ||
     company.length > 160 ||
+    projectBudget.length > 100 ||
     message.length > 5000 ||
     (service !== null && service.length > 100)
   ) {
@@ -119,6 +129,7 @@ export function validateContactInquiry(
       mobileNumber: mobileNumber || null,
       company: company || null,
       service: selectedService,
+      projectBudget: projectBudget || null,
       message,
       submissionType,
     },

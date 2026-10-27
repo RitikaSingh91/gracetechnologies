@@ -72,7 +72,7 @@ sent.
 2. In the Supabase SQL Editor, run the contents of `supabase/schema.sql`.
    This creates `public.contact_inquiries`, enables row-level security, grants
    no inquiry access to `anon` or `authenticated`, and adds the columns needed
-   to separate contact messages from service enquiries.
+   for service enquiries, including the optional project budget.
 3. Copy `.env.example` to `.env.local`. In the Supabase project dashboard, open
    **Project Settings → API** and set:
    - `SUPABASE_URL` to the project URL.

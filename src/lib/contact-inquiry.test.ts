@@ -81,6 +81,32 @@ describe("Contact inquiry validation", () => {
     });
   });
 
+  it("accepts an optional project budget for service enquiries", () => {
+    const result = validateContactInquiry({
+      ...validInquiry,
+      service: "Web & Mobile App Development",
+      submission_type: "enquiry",
+      project_budget: "$5,000–$15,000",
+    });
+
+    expect(result).toMatchObject({
+      valid: true,
+      inquiry: { projectBudget: "$5,000–$15,000" },
+    });
+  });
+
+  it("rejects malformed or oversized project budget values", () => {
+    expect(
+      validateContactInquiry({ ...validInquiry, project_budget: 5000 }).valid,
+    ).toBe(false);
+    expect(
+      validateContactInquiry({
+        ...validInquiry,
+        project_budget: "x".repeat(101),
+      }).valid,
+    ).toBe(false);
+  });
+
   it("rejects unknown submission types", () => {
     const result = validateContactInquiry({
       ...validInquiry,

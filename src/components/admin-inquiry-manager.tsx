@@ -10,6 +10,7 @@ type Inquiry = Readonly<{
   mobile_number: string | null;
   company: string | null;
   service: string;
+  project_budget: string | null;
   message: string;
   status: string;
   internal_note: string | null;
@@ -234,6 +235,7 @@ export function AdminInquiryManager({
                   <a href={`mailto:${encodeURIComponent(record.email)}`}>{record.email}</a>
                   {record.mobile_number && <a href={`tel:${encodeURIComponent(record.mobile_number)}`}>{record.mobile_number}</a>}
                   {record.company && <span>{record.company}</span>}
+                  {record.project_budget && <span>Budget: {record.project_budget}</span>}
                 </div>
                 <p className={styles.recordMessage}>{record.message}</p>
                 <div className={styles.recordControls}>

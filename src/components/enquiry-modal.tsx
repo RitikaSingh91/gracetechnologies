@@ -32,11 +32,12 @@ export function EnquiryModal() {
   useEffect(() => {
     const dialog = dialogRef.current;
 
-    if (!dialog || window.location.pathname !== "/") {
+    if (!dialog) {
       return;
     }
 
     let automaticOpenTimeout: number | undefined;
+    const shouldAutoOpen = window.location.pathname === "/";
 
     function openModal(
       returnFocusTarget: HTMLElement | null,
@@ -86,9 +87,20 @@ export function EnquiryModal() {
       openModal(trigger, trigger.dataset.enquiryService);
     }
 
+    function handleDocumentKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape" || !dialog?.open) {
+        return;
+      }
+
+      event.preventDefault();
+      dialog?.close();
+    }
+
     document.addEventListener("click", handleDocumentClick);
+    document.addEventListener("keydown", handleDocumentKeyDown);
 
     if (
+      shouldAutoOpen &&
       window.sessionStorage.getItem(automaticModalSessionKey) !== "true"
     ) {
       const activeElement = document.activeElement;
@@ -105,6 +117,7 @@ export function EnquiryModal() {
 
     return () => {
       document.removeEventListener("click", handleDocumentClick);
+      document.removeEventListener("keydown", handleDocumentKeyDown);
 
       if (automaticOpenTimeout !== undefined) {
         window.clearTimeout(automaticOpenTimeout);
@@ -194,12 +207,6 @@ export function EnquiryModal() {
       aria-modal="true"
       className="enquiry-modal"
       id="enquiry-modal"
-      onKeyDown={(event) => {
-        if (event.key === "Escape") {
-          event.preventDefault();
-          closeModal();
-        }
-      }}
       onClick={(event) => {
         if (event.target === event.currentTarget) {
           closeModal();
@@ -229,7 +236,7 @@ export function EnquiryModal() {
         >
           <div className="contact-form-grid">
             <div className="form-field">
-              <label htmlFor="enquiry-name">Name</label>
+              <label htmlFor="enquiry-name">Full Name</label>
               <input
                 autoComplete="name"
                 autoFocus
@@ -241,7 +248,17 @@ export function EnquiryModal() {
             </div>
 
             <div className="form-field">
-              <label htmlFor="enquiry-email">Business Email</label>
+              <label htmlFor="enquiry-company">Company Name (optional)</label>
+              <input
+                autoComplete="organization"
+                id="enquiry-company"
+                maxLength={160}
+                name="company"
+              />
+            </div>
+
+            <div className="form-field">
+              <label htmlFor="enquiry-email">Email Address</label>
               <input
                 autoComplete="email"
                 id="enquiry-email"
@@ -252,8 +269,21 @@ export function EnquiryModal() {
               />
             </div>
 
+            <div className="form-field">
+              <label htmlFor="enquiry-phone">Phone Number</label>
+              <input
+                autoComplete="tel"
+                id="enquiry-phone"
+                inputMode="tel"
+                maxLength={40}
+                name="phone"
+                required
+                type="tel"
+              />
+            </div>
+
             <div className="form-field form-field-full">
-              <label htmlFor="enquiry-service">Service Type</label>
+              <label htmlFor="enquiry-service">Service of Interest</label>
               <select
                 defaultValue=""
                 id="enquiry-service"
@@ -273,7 +303,19 @@ export function EnquiryModal() {
             </div>
 
             <div className="form-field form-field-full">
-              <label htmlFor="enquiry-message">Message</label>
+              <label htmlFor="enquiry-budget">Project Budget (optional)</label>
+              <select defaultValue="" id="enquiry-budget" name="project_budget">
+                <option value="">Select a budget range</option>
+                <option value="Under $5,000">Under $5,000</option>
+                <option value="$5,000–$15,000">$5,000–$15,000</option>
+                <option value="$15,000–$50,000">$15,000–$50,000</option>
+                <option value="$50,000+">$50,000+</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+
+            <div className="form-field form-field-full">
+              <label htmlFor="enquiry-message">Project Description or Message</label>
               <textarea
                 id="enquiry-message"
                 maxLength={5000}

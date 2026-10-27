@@ -5,12 +5,16 @@ create table if not exists public.contact_inquiries (
   mobile_number text,
   company text,
   service text not null,
+  project_budget text,
   message text not null,
   created_at timestamptz not null default now()
 );
 
 alter table public.contact_inquiries
   add column if not exists mobile_number text;
+
+alter table public.contact_inquiries
+  add column if not exists project_budget text;
 
 alter table public.contact_inquiries
   add column if not exists submission_type text not null default 'contact'
@@ -22,7 +26,7 @@ alter table public.contact_inquiries
 alter table public.contact_inquiries enable row level security;
 
 revoke all on table public.contact_inquiries from anon, authenticated;
-grant insert (name, email, mobile_number, company, service, message, submission_type)
+grant insert (name, email, mobile_number, company, service, project_budget, message, submission_type)
   on table public.contact_inquiries to service_role;
 grant select, update on table public.contact_inquiries to service_role;
 

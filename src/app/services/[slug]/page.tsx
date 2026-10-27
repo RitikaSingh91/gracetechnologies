@@ -54,9 +54,16 @@ export default async function ServicePage({ params }: ServicePageProps) {
             <p className="eyebrow">Our services</p>
             <h1>{service.title}</h1>
             <p className="service-page-introduction">{service.description}</p>
-            <Link className="button button-primary" href="/#contact">
+            <button
+              aria-controls="enquiry-modal"
+              aria-haspopup="dialog"
+              className="button button-primary"
+              data-enquiry-service={service.title}
+              data-enquiry-trigger
+              type="button"
+            >
               Contact Us
-            </Link>
+            </button>
           </div>
           {service.image && (
             <div className="service-page-image-frame">
@@ -133,9 +140,16 @@ export default async function ServicePage({ params }: ServicePageProps) {
             <p className="eyebrow">Let&apos;s work together</p>
             <h2>Tell us what your business needs.</h2>
           </div>
-          <Link className="button button-primary" href="/#contact">
+          <button
+            aria-controls="enquiry-modal"
+            aria-haspopup="dialog"
+            className="button button-primary"
+            data-enquiry-service={service.title}
+            data-enquiry-trigger
+            type="button"
+          >
             Get a Free Consultation
-          </Link>
+          </button>
         </section>
       </main>
       <EnquiryModal />
