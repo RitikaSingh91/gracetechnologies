@@ -177,6 +177,10 @@
     padding-block: 3rem;
   }
 
+  .titleDivider {
+    display: none;
+  }
+
   .heading {
     margin-bottom: 2rem;
   }
